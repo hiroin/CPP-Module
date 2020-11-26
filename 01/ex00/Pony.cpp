@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   Pony.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 02:33:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 06:36:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/26 06:41:00 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.h"
+#include "Pony.hpp"
 #include <string>
+#include <iostream>
 
-void 		CPhoneBook::set_pagenum(int num)
+void 		CPony::set_weight(uint8_t num)
 {
-	pagenum = num;
+	weight = num;
 }
 
-void		CPhoneBook::set_firstname(std::string s)
+uint8_t		CPony::get_weight()
 {
-	firstname = s;
+	return (weight);
 }
 
-int			CPhoneBook::get_pagenum()
+void		CPony::bark()
 {
-	return pagenum;
-}
-
-std::string	CPhoneBook::get_firstname()
-{
-	return firstname;
+	std::cout << "neigh neigh" << std::endl;
 }

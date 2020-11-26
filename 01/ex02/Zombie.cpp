@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 02:33:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 06:36:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/11/26 08:24:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.h"
+#include "Zombie.hpp"
 #include <string>
+#include <iostream>
 
-void 		CPhoneBook::set_pagenum(int num)
+void 		Zombie::set_type(std::string s)
 {
-	pagenum = num;
+	type = s;
 }
 
-void		CPhoneBook::set_firstname(std::string s)
+void 		Zombie::set_name(std::string s)
 {
-	firstname = s;
+	name = s;
 }
 
-int			CPhoneBook::get_pagenum()
+void		Zombie::announce()
 {
-	return pagenum;
-}
-
-std::string	CPhoneBook::get_firstname()
-{
-	return firstname;
+	std::cout << "<" << name << " (" << type << ")" << "> Braiiiiiiinnnssss..." << std::endl;
 }
