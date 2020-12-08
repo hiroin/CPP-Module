@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 11:38:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 03:28:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "ClapTrap.hpp"
 #include <string>
 #include <iostream>
 #include <cmath>
 #include <random>
 
-void FragTrap::rangedAttack(std::string const & target)
+void ClapTrap::rangedAttack(std::string const & target)
 {
 	std::cout << "FR4G-TP ";
 	std::cout << name_;
@@ -27,7 +27,7 @@ void FragTrap::rangedAttack(std::string const & target)
 	std::cout << " points of damage!" << std::endl;
 }
 
-void FragTrap::meleeAttack(std::string const & target)
+void ClapTrap::meleeAttack(std::string const & target)
 {
 	std::cout << "FR4G-TP ";
 	std::cout << name_;
@@ -38,36 +38,7 @@ void FragTrap::meleeAttack(std::string const & target)
 	std::cout << " points of damage!" << std::endl;
 }
 
-void FragTrap::vaulthunter_dot_exe(std::string const & target)
-{
-	int					i;
-	int					r;
-	std::random_device	rnd;
-
-	if (energy_points_ < 25)
-	{
-		std::cout << "FR4G-TP ";
-		std::cout << name_;
-		std::cout << " are not enough energy_points." << std::endl;
-		return;
-	}
-	else
-	{
-		energy_points_ -= 25;
-	}
-	i = 0;
-	while (i < 5)
-	{
-		r = rnd() % 2;
-		if (r == 0)
-			rangedAttack(target);
-		else if (r == 1)
-			meleeAttack(target);
-		i++;
-	}
-}
-
-void FragTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount)
 {
 	unsigned int	p;
 
@@ -88,7 +59,7 @@ void FragTrap::takeDamage(unsigned int amount)
 	std::cout << " remaining." << std::endl;
 }
 
-void FragTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(unsigned int amount)
 {
 	unsigned int	p;
 
@@ -106,40 +77,64 @@ void FragTrap::beRepaired(unsigned int amount)
 	std::cout << " remaining." << std::endl;
 }
 
-std::string	FragTrap::getName() const
+std::string	ClapTrap::getName() const
 {
 	return name_;
 }
 
-FragTrap::FragTrap(const FragTrap& fragtrap)
+ClapTrap::ClapTrap(const ClapTrap& ClapTrap)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "ClapTrap Copy constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name)
+ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "Name constructor called" << std::endl;
+	std::cout << "ClapTrap Name constructor called" << std::endl;
 	name_ = name;
 }
 
-FragTrap::FragTrap() : hit_points_(100), max_hit_points_(100), energy_points_(100), level_(1), name_("default"), melee_attack_damage_(30), ranged_attack_damage_(20), armor_damage_reduction_(5)
+ClapTrap::ClapTrap(
+		  const int &hit_points
+		, const int &max_hit_points
+		, const int &energy_points
+		, const int &max_energy_points
+		, const int &level
+		, const std::string &name
+		, const int &melee_attack_damage
+		, const int &ranged_attack_damage
+		, const int &armor_damage_reduction
+	) :
+	  hit_points_(hit_points)
+	, max_hit_points_(max_hit_points)
+	, energy_points_(energy_points)
+	, max_energy_points_(max_energy_points)
+	, level_(level)
+	, name_(name)
+	, melee_attack_damage_(melee_attack_damage)
+	, ranged_attack_damage_(ranged_attack_damage)
+	, armor_damage_reduction_(armor_damage_reduction)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "ClapTrap All parameter set constructor called" << std::endl;
 }
 
-FragTrap::~FragTrap()
+ClapTrap::ClapTrap() : hit_points_(100), max_hit_points_(100), energy_points_(100), max_energy_points_(100), level_(1), name_("default"), melee_attack_damage_(30), ranged_attack_damage_(20), armor_damage_reduction_(5)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
-FragTrap& 	FragTrap::operator = (const FragTrap& fixed)
+ClapTrap::~ClapTrap()
 {
-	std::cout << "Assignation operator called" << std::endl;
+	std::cout << "ClapTrap Destructor called" << std::endl;
+}
+
+ClapTrap& 	ClapTrap::operator = (const ClapTrap& fixed)
+{
+	std::cout << "ClapTrap Assignation operator called" << std::endl;
 	return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& os, const FragTrap& fragtrap)
+std::ostream&	operator<<(std::ostream& os, const ClapTrap& ClapTrap)
 {
-	os << fragtrap.getName();
+	os << ClapTrap.getName();
     return os;
 }

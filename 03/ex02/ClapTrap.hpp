@@ -1,45 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 11:38:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 03:28:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <string>
 
-class FragTrap
+class ClapTrap
 {
 public:
-	FragTrap();
-	FragTrap(std::string name);
-	virtual ~FragTrap();
-	FragTrap(const FragTrap& fragtrap);
-	FragTrap& 	operator = (const FragTrap& fragtrap);
+	ClapTrap();
+	ClapTrap(std::string name);
+	ClapTrap(
+		  const int &hit_points
+		, const int &max_hit_points
+		, const int &energy_points
+		, const int &max_energy_points
+		, const int &level
+		, const std::string &name
+		, const int &melee_attack_damage
+		, const int &ranged_attack_damage
+		, const int &armor_damage_reduction
+	);
+	virtual ~ClapTrap();
+	ClapTrap(const ClapTrap& ClapTrap);
+	ClapTrap& 	operator = (const ClapTrap& ClapTrap);
 	void rangedAttack(std::string const & target);
 	void meleeAttack(std::string const & target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
-	void vaulthunter_dot_exe(std::string const & target);
 	std::string	getName() const;
-private:
+protected:
+	std::string	name_;
+	int			energy_points_;
+	int			max_energy_points_;
 	int			hit_points_;
 	int			max_hit_points_;
-	int			energy_points_;
 	int			level_;
-	std::string	name_;
 	int			melee_attack_damage_;
 	int			ranged_attack_damage_;
 	int			armor_damage_reduction_;
 };
 
-std::ostream&	operator<<(std::ostream& os, const FragTrap& fragtrap);
+std::ostream&	operator<<(std::ostream& os, const ClapTrap& ClapTrap);
 
 #endif

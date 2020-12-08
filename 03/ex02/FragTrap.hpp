@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 11:38:02 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/08 03:29:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,27 @@
 # define FRAGTRAP_HPP
 
 # include <string>
+# include "ClapTrap.hpp"
 
-class FragTrap
+class FragTrap : public ClapTrap
 {
 public:
 	FragTrap();
-	FragTrap(std::string name);
+	FragTrap(
+		  const int &hit_points
+		, const int &max_hit_points
+		, const int &energy_points
+		, const int &max_energy_points
+		, const int &level
+		, const std::string &name
+		, const int &melee_attack_damage
+		, const int &ranged_attack_damage
+		, const int &armor_damage_reduction
+	);	
 	virtual ~FragTrap();
 	FragTrap(const FragTrap& fragtrap);
 	FragTrap& 	operator = (const FragTrap& fragtrap);
-	void rangedAttack(std::string const & target);
-	void meleeAttack(std::string const & target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
 	void vaulthunter_dot_exe(std::string const & target);
-	std::string	getName() const;
-private:
-	int			hit_points_;
-	int			max_hit_points_;
-	int			energy_points_;
-	int			level_;
-	std::string	name_;
-	int			melee_attack_damage_;
-	int			ranged_attack_damage_;
-	int			armor_damage_reduction_;
 };
 
 std::ostream&	operator<<(std::ostream& os, const FragTrap& fragtrap);
