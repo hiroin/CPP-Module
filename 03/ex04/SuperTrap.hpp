@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 07:05:05 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/13 09:46:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 # define SUPERTRAP_HPP
 
 # include <string>
-# include "ClapTrap.hpp"
-# include "FragTrap.hpp"
-# include "NinjaTrap.hpp"
+# include "SuperTrap.hpp"
 
 class SuperTrap : public FragTrap, public NinjaTrap
 {

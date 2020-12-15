@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 03:28:01 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/09 09:03:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	unsigned int	p;
-
 	std::cout << "FR4G-TP ";
 	std::cout << name_;
 	std::cout << " has repaired." << std::endl;
@@ -84,6 +82,7 @@ std::string	ClapTrap::getName() const
 
 ClapTrap::ClapTrap(const ClapTrap& ClapTrap)
 {
+	(void)ClapTrap;
 	std::cout << "ClapTrap Copy constructor called" << std::endl;
 }
 

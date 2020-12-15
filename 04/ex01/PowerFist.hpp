@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Peon.hpp                                           :+:      :+:    :+:   */
+/*   PowerFist.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 06:47:13 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/14 07:04:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PEON_HPP
-# define PEON_HPP
+#ifndef PowerFist_HPP
+# define PowerFist_HPP
 
 # include <string>
-#include "AWeapon.hpp"
+# include "AWeapon.hpp"
 
-class Peon : public Victim
+class PowerFist : public AWeapon
 {
 public:
-	Peon(std::string name);
-	virtual ~Peon();
-	Peon(const Peon& Peon);
-	Peon& 	operator = (const Peon& Peon);
-	void getPolymorphed() const;
+	PowerFist(std::string const & name, int apcost, int damage);
+	virtual ~PowerFist();
+	PowerFist(const PowerFist& PowerFist);
+	PowerFist& 	operator = (const PowerFist& PowerFist);
+	void attack() const;
+	PowerFist();
+protected:
 private:
-	Peon();
 };
 
-std::ostream&	operator<<(std::ostream& os, const Peon& Peon);
+std::ostream&	operator<<(std::ostream& os, const PowerFist& PowerFist);
 
 #endif
