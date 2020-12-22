@@ -6,14 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 06:47:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/21 02:20:03 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ISQUAD_HPP
 # define ISQUAD_HPP
 
-class ISpaceMarine;
+# include "ISpaceMarine.hpp"
 
 class ISquad
 {

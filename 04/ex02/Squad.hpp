@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 06:55:56 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/21 02:53:44 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 class Squad : public ISquad
 {
 public:
+	int getCount() const;
+	ISpaceMarine* getUnit(int) const;
+	int push(ISpaceMarine* marine);
 	Squad();
 	virtual ~Squad();
 	Squad(const Squad& Squad);
@@ -26,7 +29,7 @@ public:
 protected:
 private:
 	int				count_;
-	ISpaceMarine*	marines;	
+	ISpaceMarine**	marines_;	
 };
 
 std::ostream&	operator<<(std::ostream& os, const Squad& Squad);

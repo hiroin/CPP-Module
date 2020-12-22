@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 14:18:53 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/19 08:16:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 #include <string>
 #include <iostream>
 
-// ISpaceMarine*	TacticalMarine::clone() const
-// {
-// 	//現在のオブジェクトのコピーを返します。
-// 	return ;
-// }
+ISpaceMarine*	TacticalMarine::clone() const
+{
+	//現在のオブジェクトのコピーを返します。
+	ISpaceMarine* m = new TacticalMarine();
+	*m = *this;
+	return m;
+}
 
 void 			TacticalMarine::battleCry() const
 {
