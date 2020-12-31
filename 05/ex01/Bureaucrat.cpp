@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/31 06:45:03 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/31 07:38:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	Bureaucrat::getGrade() const
 {
@@ -67,6 +68,24 @@ std::runtime_error Bureaucrat::GradeTooLowException()
 {
 	//std::cout << "GradeTooLow" << std::endl;
 	return std::runtime_error("GradeTooLow");
+}
+
+void		Bureaucrat::signForm(Form& form)
+{
+	if (form.getSigned() == true)
+	{
+		std::cout << name_ << " cannot sign " << form.getName() << " because already been signed." << std::endl;
+	}
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name_ << " signs " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		std::cout << name_ << " cannot sign " << form.getName() << " because GradeTooLow" << std::endl;
+	}
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : name_(name)
