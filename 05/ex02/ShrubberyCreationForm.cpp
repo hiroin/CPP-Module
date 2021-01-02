@@ -39,7 +39,7 @@ bool		ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	return false;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("default", 150, 150, "default")
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("default", 145, 137, "default")
 {
 	std::cout << "ShrubberyCreationForm Default constructor called" << std::endl;
 }

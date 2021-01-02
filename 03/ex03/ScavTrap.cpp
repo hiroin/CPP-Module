@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 09:28:18 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 05:55:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 #include <string>
 #include <iostream>
 #include <cmath>
-#include <random>
 
 void ScavTrap::challengeNewcomer(void)
 {
 	int					i;
 	int					r;
-	std::random_device	rnd;
 
 	if (energy_points_ < 25)
 	{
@@ -33,12 +31,13 @@ void ScavTrap::challengeNewcomer(void)
 	{
 		energy_points_ -= 25;
 	}
+	srand((unsigned int)time(NULL));
 	i = 0;
 	while (i < 5)
 	{
 		std::cout << "FR4G-TP ";
 		std::cout << name_;
-		r = rnd() % 2;
+		r = rand() % 2;
 		if (r == 0)
 			std::cout << "jumps." << std::endl;
 		else if (r == 1)

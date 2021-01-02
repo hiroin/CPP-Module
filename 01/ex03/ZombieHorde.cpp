@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 08:37:19 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 11:38:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 04:55:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ZombieHorde.hpp"
 #include <string>
 #include <iostream>
-#include <random>
+// #include <random>
 
 ZombieHorde::ZombieHorde(int n)
 {
@@ -50,10 +50,16 @@ void ZombieHorde::announce()
 std::string	ZombieHorde::randomChump()
 {
 	std::string s = "No.";
-
-	std::random_device seed_gen;
-	std::default_random_engine engine(seed_gen());
-	std::uniform_int_distribution<int> distribution(0,999) ;
-	s += std::to_string(distribution(engine));
+	static int flag;
+	
+	if (flag == 0) {
+		srand((unsigned int)time(NULL));
+		flag = 1;
+	}
+	// std::random_device seed_gen;
+	// std::default_random_engine engine(seed_gen());
+	// std::uniform_int_distribution<int> distribution(0,999) ;
+	// s += std::to_string(distribution(engine));
+	s += std::to_string(rand() % 1000);
 	return (s);
 }

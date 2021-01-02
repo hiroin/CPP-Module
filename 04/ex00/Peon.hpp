@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 06:47:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 05:57:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define PEON_HPP
 
 # include <string>
-#include "AWeapon.hpp"
-
+# include "AWeapon.hpp"
+# include "Victim.hpp"
 class Peon : public Victim
 {
 public:

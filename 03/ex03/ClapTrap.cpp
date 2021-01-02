@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/09 09:25:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 05:19:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
-#include <random>
+// #include <random>
 
 void ClapTrap::rangedAttack(std::string const & target)
 {

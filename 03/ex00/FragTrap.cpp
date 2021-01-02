@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 11:38:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 04:59:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include <iostream>
 #include <cmath>
-#include <random>
+// #include <random>
 
 void FragTrap::rangedAttack(std::string const & target)
 {
@@ -42,8 +42,9 @@ void FragTrap::vaulthunter_dot_exe(std::string const & target)
 {
 	int					i;
 	int					r;
-	std::random_device	rnd;
+	// std::random_device	rnd;
 
+	srand((unsigned int)time(NULL));
 	if (energy_points_ < 25)
 	{
 		std::cout << "FR4G-TP ";
@@ -58,7 +59,8 @@ void FragTrap::vaulthunter_dot_exe(std::string const & target)
 	i = 0;
 	while (i < 5)
 	{
-		r = rnd() % 2;
+		// r = rnd() % 2;
+		r = rand() % 2;
 		if (r == 0)
 			rangedAttack(target);
 		else if (r == 1)

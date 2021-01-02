@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/25 02:33:33 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 09:53:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 04:49:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "Zombie.hpp"
 #include <string>
 #include <iostream>
-#include <random>
 
 Zombie* 	ZombieEvent::newZombie(std::string name)
 {
@@ -43,8 +42,7 @@ std::string	ZombieEvent::randomChump()
 {
 	std::string str[5] = {"No.000","No.001","No.002","No.003","No.004"};
 
-	std::random_device seed_gen;
-	std::default_random_engine engine(seed_gen());
-	std::uniform_int_distribution<int> distribution(0,4) ;
-	return str[distribution(engine)];
+	srand((unsigned int)time(NULL));
+	std::cout << rand() << std::endl;
+	return str[rand() % 5];
 }

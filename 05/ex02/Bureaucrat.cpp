@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/01 03:33:12 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/02 04:36:38 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void		Bureaucrat::executeForm(Form const& form)
 	try
 	{
 		if (form.execute(*this))
-			std::cout << name_ << " executes " << form.getName() << std::endl;
+			std::cout << name_ << " execute " << form.getName() << std::endl;
 		else
 			std::cout << name_ << " failed to execute " << form.getName() << std::endl;
 	}
