@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/05 10:08:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/05 10:23:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,14 @@ int	main(int argc, char **argv)
 	else if (s == "nanf")
 	{
 		f = std::numeric_limits<float>::quiet_NaN();
+	}
+	else if (s == "+inff")
+	{
+		f = std::numeric_limits<float>::infinity();
+	}
+	else if (s == "-inff")
+	{
+		f = -std::numeric_limits<float>::infinity();
 	}
 	else
 	{
@@ -171,10 +179,7 @@ int	main(int argc, char **argv)
 	}
 	else if (std::numeric_limits<float>::max() >= f && f >= std::numeric_limits<float>::lowest())
 	{
-		// float f_integral_part = 0;
-		// float f_fractional_part = std::modf(f, &f_integral_part);
 		std::cout << "float : " << f;
-		// if (f_fractional_part == 0.0)
 		if (decimalPartIs0(argv[1]) == true)
 		{
 			std::cout << ".0";
@@ -192,10 +197,8 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		double d_integral_part = 0;
-		double d_fractional_part = std::modf(d, &d_integral_part);
 		std::cout << "double : " << d;
-		if (d_fractional_part == 0.0)
+		if (decimalPartIs0(argv[1]) == true && s != "nan" && s != "nanf")
 		{
 			std::cout << ".0";
 		}
