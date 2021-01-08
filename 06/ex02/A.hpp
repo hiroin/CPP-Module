@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2021/01/08 02:57:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/08 13:33:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,8 @@
 
 class A : public Base
 {
-public:
-	A();
-	virtual ~A();
-	A(const A& other);
-	A& 	operator = (const A& other);
+// public:
+// 	A();
 };
-
-std::ostream&	operator<<(std::ostream& os, const A& a);
 
 #endif

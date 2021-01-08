@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Operationreated: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/08 02:27:07 by user42           ###   ########.fr       */
+/*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
+/*   Updated: 2021/01/08 13:35:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,20 @@ Base * Operation::generate(void)
 	Base *base;
 	i = genRand(0, 2);
 	if (i == 0)
+	{
 		base = new A();
+		std::cout << "Create A." << std::endl;
+	}
 	else if (i == 1)
+	{
 		base = new B();
+		std::cout << "Create B." << std::endl;
+	}
 	else
+	{
 		base = new C();
+		std::cout << "Create C." << std::endl;
+	}
 	return base;
 }
 
