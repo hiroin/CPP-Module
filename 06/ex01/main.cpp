@@ -1,29 +1,72 @@
 #include <iostream>
 #include <string>
+#include <string.h>
 
-#pragma pack(4)
+
 struct	Data
 {
 	std::string	s1;
+	#pragma pack(4)
 	int			i;
+	#pragma pack()
 	std::string	s2;
 };
-#pragma pack()
+
+int genRand(int min, int max)
+{
+    static int flag;    
+    if (flag == 0)
+	{
+        srand((unsigned int)time(NULL));
+        rand();
+        flag = 1;
+    }
+    int ret = min + (int)(rand()*(max - min + 1.0)/(1.0+RAND_MAX));
+    return ret;
+}
+
+char getRandomCharLower(void)
+{
+	const char CHARS[] = "abcdefghijklmnopqrstuvwxyz";
+	int index = genRand(0, (strlen(CHARS) - 1));
+	char c = CHARS[index];
+	return c;
+}
+
+std::string getRandomCharsLower(int length)
+{
+	int			i;
+	char		c;
+	std::string	s;
+
+	i = 0;
+	while (i < length)
+	{
+		s += getRandomCharLower();
+		i++;
+	}
+	return s;
+}
 
 Data * deserialize(void * raw)
 {
 	return reinterpret_cast<Data *>(raw);
 }
 
-void * serialize(void)
+void * serialize()
 {
 	Data	*serializeData;
 
-	Data baseData = {"abcdefg", 1, "hijklmno"};
+	Data baseData = {getRandomCharsLower(8), genRand(1, 1000), getRandomCharsLower(8)};
+	std::cout << "baseData" << std::endl;
+	std::cout << " s1 = " << baseData.s1 << std::endl;
+	std::cout << " i  = " << baseData.i << std::endl;
+	std::cout << " s2 = " << baseData.s2 << std::endl;
+	std::cout << std::endl;
 	serializeData = new Data();
 	*serializeData = baseData;
 
-	return reinterpret_cast<void *>(serializeData);
+	return reinterpret_cast<void*>(serializeData);
 }
 
 int		main()
