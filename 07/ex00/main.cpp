@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/09 04:18:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/09 06:28:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	bool operator >=( Awesome const & rhs ) { return (this->_n >= rhs._n); }
 	bool operator <=( Awesome const & rhs ) { return (this->_n <= rhs._n); }
 
-	Awesome(){}
+	//Awesome(){}
 	Awesome& 	operator = (const Awesome& other)
 	{
 		_n = other._n;

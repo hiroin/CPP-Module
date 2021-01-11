@@ -1,41 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2021/01/09 06:28:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 13:45:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 # include <iostream>
 # include <string>
 
-template <typename TYPE>
-void swap(TYPE& a, TYPE& b)
+template <typename TYPE> class iter
 {
-	//TYPE tmp;
+public:
+	iter(TYPE *array, size_t size, void (*func)(TYPE&))
+	{
+		std::cout << "iter Default constructor called" << std::endl;
+		size_t		i;
 
-	TYPE tmp = a;
-	a = b;
-	b = tmp;
-}
+		i = 0;
+		while (i < size)
+		{
+			func(array[i]);
+			i++;
+		}
+	}
 
-template <typename TYPE>
-TYPE& min(TYPE& a, TYPE& b)
-{
-	return (a < b) ? a : b;
-}
+	iter(TYPE *array, size_t size, void (*func)(const TYPE&))
+	{
+		std::cout << "iter Default constructor called" << std::endl;
+		size_t		i;
 
-template <typename TYPE>
-TYPE& max(TYPE& a, TYPE& b)
-{
-	return (a > b) ? a : b;
-}
+		i = 0;
+		while (i < size)
+		{
+			func(array[i]);
+			i++;
+		}
+	}
+
+	~iter()
+	{
+		std::cout << "iter Destructor called" << std::endl;
+	}
+private:
+};
+
+typedef iter<int> iteri;
 
 #endif

@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2021/01/09 06:28:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/11 13:55:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 # include <iostream>
 # include <string>
 
-template <typename TYPE>
-void swap(TYPE& a, TYPE& b)
-{
-	//TYPE tmp;
 
-	TYPE tmp = a;
-	a = b;
-	b = tmp;
+template <typename TYPE>
+void iter(TYPE *array, size_t size, void (*func)(TYPE&))
+{
+	size_t		i;
+
+	i = 0;
+	while (i < size)
+	{
+		func(array[i]);
+		i++;
+	}	
 }
 
 template <typename TYPE>
-TYPE& min(TYPE& a, TYPE& b)
+void iter(TYPE *array, size_t size, void (*func)( const TYPE&))
 {
-	return (a < b) ? a : b;
-}
+	size_t		i;
 
-template <typename TYPE>
-TYPE& max(TYPE& a, TYPE& b)
-{
-	return (a > b) ? a : b;
+	i = 0;
+	while (i < size)
+	{
+		func(array[i]);
+		i++;
+	}	
 }
 
 #endif
