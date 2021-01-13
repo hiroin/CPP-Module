@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/12 14:06:13 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/13 14:41:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // int easyfind(const std::vector<int> &v, int val)
 // {
-// 	auto i = std::find(v.begin(), v.end(), val);
+// 	std::vector<int>::const_iterator i = std::find(v.begin(), v.end(), val);
 // 	if(i != v.end())
 // 	{
 // 		return (*i);
@@ -24,7 +24,8 @@
 
 int		main()
 {
-	std::vector<int> array{0,1,2,3,4,5,6,7,8,9};
+	int	data[] = {0,1,2,3,4,5,6,7,8,9};
+	std::vector<int> array(data, data + 10);
 	std::cout << easyfind(array, 1) << std::endl;
 	try
 	{
