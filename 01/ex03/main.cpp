@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 08:15:46 by user42            #+#    #+#             */
-/*   Updated: 2020/11/27 11:38:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/17 08:24:41 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 
 int main(void)
 {
-	ZombieHorde	*obj;
+	ZombieHorde	*obj_heap;
 
-	obj = new ZombieHorde(2);
-	obj->announce();
-	delete obj;
+	obj_heap = new ZombieHorde(10);
+	obj_heap->announce();
+	delete obj_heap;
+	std::cout << std::endl;
+
+	ZombieHorde	obj_stack(10);
+	obj_stack.announce();
+
 	return (0);
 }

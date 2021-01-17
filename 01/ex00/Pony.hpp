@@ -6,12 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 06:27:07 by user42            #+#    #+#             */
-/*   Updated: 2021/01/17 06:54:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/17 08:06:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PONY_HPP
 # define PONY_HPP
+# include <string>
+# include <iostream>
+
 class Pony
 {
 public:

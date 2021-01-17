@@ -6,15 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/27 08:37:19 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 04:55:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/17 08:28:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 #include "ZombieHorde.hpp"
-#include <string>
-#include <iostream>
-// #include <random>
 
 ZombieHorde::ZombieHorde(int n)
 {
@@ -24,6 +21,7 @@ ZombieHorde::ZombieHorde(int n)
 	i = 0;
 	while (i < n)
 	{
+		obj_zomibes[i].set_type("Horde");
 		obj_zomibes[i].set_name(ZombieHorde::randomChump());
 		i++;
 	}
@@ -50,16 +48,18 @@ void ZombieHorde::announce()
 std::string	ZombieHorde::randomChump()
 {
 	std::string s = "No.";
-	static int flag;
+	int			num;
+	static int	flag;
 	
 	if (flag == 0) {
 		srand((unsigned int)time(NULL));
 		flag = 1;
 	}
-	// std::random_device seed_gen;
-	// std::default_random_engine engine(seed_gen());
-	// std::uniform_int_distribution<int> distribution(0,999) ;
-	// s += std::to_string(distribution(engine));
-	s += std::to_string(rand() % 1000);
+	num = rand() % 1000;
+	std::stringstream ss;
+    ss << num;
+    std::string num_str = ss.str();
+
+	s += num_str;
 	return (s);
 }
