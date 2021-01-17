@@ -6,31 +6,34 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/26 06:42:06 by user42            #+#    #+#             */
-/*   Updated: 2020/11/26 07:10:39 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/17 06:57:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+clang++ -Wall -Wextra -Werror -std=c++98 -fsanitize=address *.cpp
+clang++ -Wall -Wextra -Werror -std=c++98 -fsanitize=address,leak *.cpp
+*/
+#include <string>
 #include <iostream>
-#include <iomanip>
-#include <limits>
 #include "Pony.hpp"
 
 void	ponyOnTheStac()
 {
-	CPony		obj;
+	Pony	obj;
 
 	obj.set_weight(100);
-	std::cout << std::to_string(obj.get_weight()) << "kg" << std::endl;	
+	std::cout << obj.get_weight() << "kg" << std::endl;	
 	obj.bark();
 }
 
 void	ponyOnTheHeap()
 {
-	CPony		*obj = 0;
+	Pony	*obj;
 
 	try
 	{
-		obj = new CPony();
+		obj = new Pony();
 	}
 	catch(const std::exception& e)
 	{
@@ -38,7 +41,7 @@ void	ponyOnTheHeap()
 		return;
 	}	
 	obj->set_weight(100);
-	std::cout << std::to_string(obj->get_weight()) << "kg" << std::endl;	
+	std::cout << obj->get_weight() << "kg" << std::endl;	
 	obj->bark();
 	delete obj;
 }
@@ -46,9 +49,10 @@ void	ponyOnTheHeap()
 
 int main()
 {
-	std::cout << "ponyOnTheStac()" << std::endl;
-	ponyOnTheStac();
 	std::cout << "ponyOnTheHeap()" << std::endl;
 	ponyOnTheHeap();
+	std::cout << std::endl;
+	std::cout << "ponyOnTheHeap()" << std::endl;
+	ponyOnTheStac();
 	return (0);
 }
