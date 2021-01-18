@@ -1,0 +1,20 @@
+./a.out test000.txt 0 a
+cat test000.txt.replace
+./a.out test000.txt 01 a
+cat test000.txt.replace
+./a.out test000.txt 0 ab
+cat test000.txt.replace
+
+./a.out test001.txt 0 a
+cat test001.txt.replace
+./a.out test001.txt 01 a
+cat test001.txt.replace
+./a.out test001.txt 0 ab
+cat test001.txt.replace
+
+./a.out test002.txt 0 a
+cat test002.txt.replace
+./a.out test002.txt 01 a
+cat test002.txt.replace
+./a.out test002.txt 0 ab
+cat test002.txt.replace
