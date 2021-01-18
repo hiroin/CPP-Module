@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2021/01/18 02:16:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/18 02:37:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class Weapon
 public:
 	Weapon(std::string s);
 	~Weapon();
-	std::string&	getType() const;
+	std::string		getType() const;
 	void			setType(const std::string& s);
 private:
 	Weapon();
-	std::string*	type;
+	std::string		type;
 };
 
 #endif
