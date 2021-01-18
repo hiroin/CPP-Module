@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 03:33:39 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/18 02:16:02 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 # define WEAPON_HPP
 
 # include <string>
+# include <iostream>
+# include <sstream>
 
 class Weapon
 {
 public:
-	Weapon();
 	Weapon(std::string s);
 	~Weapon();
-	std::string &	getType() const;
-	void			setType(std::string s);
+	std::string&	getType() const;
+	void			setType(const std::string& s);
 private:
-	std::string *	type;
+	Weapon();
+	std::string*	type;
 };
 
 #endif

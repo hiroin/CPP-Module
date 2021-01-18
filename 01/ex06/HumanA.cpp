@@ -6,17 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:08:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 03:55:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/18 02:18:19 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include "Weapon.hpp"
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string s, Weapon& w) : weapon(w), name(s)
+HumanA::HumanA(std::string s, Weapon& w) : name(s), weapon(w) 
 {
 	std::cout << "HumanA::Constractor is called" << std::endl;
 }

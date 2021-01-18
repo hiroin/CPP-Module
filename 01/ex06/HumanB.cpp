@@ -6,17 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:08:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/02 06:37:34 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/18 02:22:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
-#include <sstream>
-#include "Weapon.hpp"
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string s) : name(s)
+HumanB::HumanB(const std::string& s) : name(s)
 {
 	std::cout << "HumanB::Constractor is called" << std::endl;
 }
