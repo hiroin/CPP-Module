@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2020/12/07 03:23:10 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/19 04:34:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int main(void)
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
-	
-	Fixed const e( -1 );
-	std::cout << "e is " << e << std::endl;
-	Fixed const f( -42.42f);
-	std::cout << "f is " << f << std::endl;
 
 	return 0;
 }
