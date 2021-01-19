@@ -6,14 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/19 04:36:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/19 11:24:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <string>
 #include <iostream>
-#include <cmath>
+#include <math.h>
 
 int		Fixed::getRawBits(void) const
 {
