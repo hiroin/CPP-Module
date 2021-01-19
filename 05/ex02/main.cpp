@@ -6,10 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 04:35:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/18 13:36:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+curl -fsSL https://rawgit.com/kube/42homebrew/master/install.sh | zsh
+brew install tree
+*/
 #include "Bureaucrat.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
