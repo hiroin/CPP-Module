@@ -6,15 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 05:02:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/20 12:26:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
-#include <string>
-#include <iostream>
-#include <cmath>
-// #include <random>
 
 void ScavTrap::rangedAttack(std::string const & target)
 {
@@ -38,45 +34,17 @@ void ScavTrap::meleeAttack(std::string const & target)
 	std::cout << " points of damage!" << std::endl;
 }
 
-void ScavTrap::challengeNewcomer(void)
+void ScavTrap::takeDamage(int amount)
 {
-	int					i;
-	int					r;
-	// std::random_device	rnd;
+	int	p;
 
-	if (energy_points_ < 25)
-	{
-		std::cout << "FR4G-TP ";
-		std::cout << name_;
-		std::cout << " are not enough energy_points." << std::endl;
-		return;
-	}
-	else
-	{
-		energy_points_ -= 25;
-	}
-	srand((unsigned int)time(NULL));
-	i = 0;
-	while (i < 5)
-	{
-		std::cout << "FR4G-TP ";
-		std::cout << name_;
-		r = rand() % 2;
-		if (r == 0)
-			std::cout << " jumps." << std::endl;
-		else if (r == 1)
-			std::cout << " is down." << std::endl;
-		i++;
-	}
-}
-
-void ScavTrap::takeDamage(unsigned int amount)
-{
-	unsigned int	p;
-
+	if (amount <= 0)
+		return ;
 	p = amount - armor_damage_reduction_;
+	if (p < 0)
+		p = 0;	
 	std::cout << "Enemy attack!" << std::endl;
-	std::cout << "FR4G-TP ";
+	std::cout << "ScavTrap FR4G-TP ";
 	std::cout << name_;
 	std::cout << " has taken ";
 	std::cout << p;
@@ -91,22 +59,64 @@ void ScavTrap::takeDamage(unsigned int amount)
 	std::cout << " remaining." << std::endl;
 }
 
-void ScavTrap::beRepaired(unsigned int amount)
+void ScavTrap::beRepaired(int amount)
 {
-	unsigned int	p;
-
-	std::cout << "FR4G-TP ";
+	if (amount <= 0)
+		return ;
+	std::cout << "ScavTrap FR4G-TP ";
 	std::cout << name_;
-	std::cout << " has repaired." << std::endl;
+	std::cout << " has repaired ";
+	std::cout << amount;
+	std::cout << " points." << std::endl;
 
 	hit_points_ += amount;
 	if (hit_points_ > max_hit_points_)
 		hit_points_ = max_hit_points_;
-	std::cout << "FR4G-TP ";
+	std::cout << "ScavTrap FR4G-TP ";
 	std::cout << name_;
 	std::cout << " has ";
 	std::cout << hit_points_;
 	std::cout << " remaining." << std::endl;
+}
+
+void ScavTrap::challengeNewcomer(void)
+{
+	int				i;
+	int				r;
+	static int		flag = 0;
+	std::string		challenges[] =
+	{
+		"Masked Rider Kick!",
+		"Omega Drive Ore!",
+		"Mighty Critical Strike!",
+		"Vortech finish!",
+		"Vortec Time Break!"
+	};
+
+	if (energy_points_ < 25)
+	{
+		std::cout << "ScavTrap FR4G-TP ";
+		std::cout << name_;
+		std::cout << " are not enough energy_points." << std::endl;
+		return;
+	}
+	else
+	{
+		energy_points_ -= 25;
+	}
+	std::cout << "Newcomer!" << std::endl;
+	if (flag == 0)
+	{
+		srand((unsigned int)time(NULL));
+		flag = 1;
+	}
+	i = 0;
+	while (i < 5)
+	{
+		r = rand() % 5;
+		std::cout << challenges[r] << std::endl;
+		i++;
+	}
 }
 
 std::string	ScavTrap::getName() const
@@ -114,35 +124,76 @@ std::string	ScavTrap::getName() const
 	return name_;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& ScavTrap)
+int	ScavTrap::getHitPoints() const
 {
-	std::cout << "ScavTrap Copy constructor called" << std::endl;
+	return hit_points_;
 }
 
-ScavTrap::ScavTrap(std::string name)
+int	ScavTrap::getEnergyPoints() const
 {
-	std::cout << "ScavTrap Name constructor called" << std::endl;
-	name_ = name;
+	return energy_points_;
 }
 
-ScavTrap::ScavTrap() : hit_points_(100), max_hit_points_(100), energy_points_(50), level_(1), name_("default"), melee_attack_damage_(20), ranged_attack_damage_(15), armor_damage_reduction_(3)
+int	ScavTrap::getMaxEnergyPoints() const
 {
-	std::cout << "ScavTrap Default constructor called" << std::endl;
+	return max_energy_points_;
+}
+
+ScavTrap::ScavTrap(std::string name) :
+	hit_points_(100),
+	max_hit_points_(100),
+	energy_points_(100),
+	max_energy_points_(100),
+	level_(1), name_(name),
+	melee_attack_damage_(20),
+	ranged_attack_damage_(15),
+	armor_damage_reduction_(3)
+{
+	std::cout << "As far back as I can remember, I’ve always wanted to be a gangster.(ScavTrap Name constructor called)" << std::endl;
+}
+
+ScavTrap::ScavTrap() :
+	hit_points_(100),
+	max_hit_points_(100),
+	energy_points_(100),
+	max_energy_points_(100),
+	level_(1),
+	name_("default"),
+	melee_attack_damage_(20),
+	ranged_attack_damage_(15),
+	armor_damage_reduction_(3)
+{
+	std::cout << "As far back as I can remember, I’ve always wanted to be a gangster.(ScavTrap Default constructor called)" << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap Destructor called" << std::endl;
+	std::cout << "Danger and death are everywhere.(ScavTrap Destructor called)" << std::endl;
 }
 
-ScavTrap& 	ScavTrap::operator = (const ScavTrap& fixed)
+ScavTrap::ScavTrap(const ScavTrap& other)
+{
+	std::cout << "ScavTrap Copy constructor called" << std::endl;
+	*this = other;
+}
+
+ScavTrap& 	ScavTrap::operator=(const ScavTrap& other)
 {
 	std::cout << "ScavTrap Assignation operator called" << std::endl;
+	hit_points_ = other.hit_points_;
+	max_hit_points_ = other.max_hit_points_;
+	energy_points_ = other.energy_points_;
+	level_ = other.level_;
+	name_ = other.name_;
+	melee_attack_damage_ = other.melee_attack_damage_;
+	ranged_attack_damage_ = other.ranged_attack_damage_;
+	armor_damage_reduction_ = other.armor_damage_reduction_;
 	return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& os, const ScavTrap& ScavTrap)
+std::ostream&	operator<<(std::ostream& os, const ScavTrap& scavTrap)
 {
-	os << ScavTrap.getName();
+	os << "HitPoints    = " << scavTrap.getHitPoints() << std::endl;
+	os << "EnergyPoints = " << scavTrap.getEnergyPoints() << std::endl;
     return os;
 }

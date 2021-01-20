@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2021/01/20 03:48:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/20 04:09:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public:
 	std::string	getName() const;
 	int	getHitPoints() const;
 	int	getEnergyPoints() const;
-	int	getMaxEnergyPoints() const;	
+	int	getMaxEnergyPoints() const;
 
 private:
 	FragTrap();

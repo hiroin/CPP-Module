@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 01:12:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/20 06:25:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,37 @@
 # define SCABTRAP_HPP
 
 # include <string>
+# include <string>
+# include <iostream>
+# include <cmath>
 
 class ScavTrap
 {
 public:
-	ScavTrap();
 	ScavTrap(std::string name);
 	virtual ~ScavTrap();
 	ScavTrap(const ScavTrap& ScavTrap);
-	ScavTrap& 	operator = (const ScavTrap& ScavTrap);
+	ScavTrap& 	operator=(const ScavTrap& ScavTrap);
+
+public:
 	void rangedAttack(std::string const & target);
 	void meleeAttack(std::string const & target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	void takeDamage(int amount);
+	void beRepaired(int amount);
 	void challengeNewcomer(void);
 	std::string	getName() const;
+	int	getHitPoints() const;
+	int	getEnergyPoints() const;
+	int	getMaxEnergyPoints() const;
+
+private:
+	ScavTrap();
+
 private:
 	int			hit_points_;
 	int			max_hit_points_;
 	int			energy_points_;
+	int			max_energy_points_;
 	int			level_;
 	std::string	name_;
 	int			melee_attack_damage_;
