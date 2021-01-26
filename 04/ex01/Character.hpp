@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 02:47:32 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:17:36 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define CHARACTER_HPP
 
 # include <string>
+# include <iostream>
+# include "AWeapon.hpp"
+# include "Enemy.hpp"
 
 class AWeapon;
 class Enemy;
@@ -23,19 +26,22 @@ class Character
 public:
 	Character(std::string const & name);
 	virtual ~Character();
-	Character(const Character& Character);
-	Character& 	operator = (const Character& Character);
+	Character(const Character& other);
+	Character& 	operator = (const Character& other);
+
+public:
 	void recoverAP();
 	void equip(AWeapon*);
 	void attack(Enemy*);
-	std::string	virtual getName() const;
+	std::string	const & getName() const;
 	int	getAp() const;
 	std::string	getWeaponName() const;
+
 private:
 	Character();
 	std::string	name_;
-	int			ap_ = 40;
-	AWeapon		*aweapon_ = NULL;
+	int			ap_;
+	AWeapon		*aweapon_;
 };
 
 std::ostream&	operator<<(std::ostream& os, const Character& Character);

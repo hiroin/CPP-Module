@@ -6,19 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 02:45:48 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 10:55:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RadScorpion.hpp"
-#include <string>
-#include <iostream>
-
-RadScorpion::RadScorpion(const RadScorpion& RadScorpion)
-{
-	(void)RadScorpion;
-	std::cout << "RadScorpion Copy constructor called" << std::endl;
-}
 
 RadScorpion::RadScorpion() : Enemy(80, "RadScorpion")
 {
@@ -32,10 +24,19 @@ RadScorpion::~RadScorpion()
 	std::cout << "* SPROTCH *" << std::endl;
 }
 
-RadScorpion& 	RadScorpion::operator = (const RadScorpion& fixed)
+RadScorpion::RadScorpion(const RadScorpion& other)
 {
-	(void)fixed;
+	std::cout << "RadScorpion Copy constructor called" << std::endl;
+	*this = other;
+}
+
+RadScorpion& 	RadScorpion::operator=(const RadScorpion& other)
+{
 	std::cout << "RadScorpion Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		Enemy::operator=(other);
+	}
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2021/01/20 12:17:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/20 12:57:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,8 @@ int main(void)
 
 	st.challengeNewcomer();
 	std::cout << std::endl;
-	std::cout << "Current state" << std::endl;
-	std::cout << st << std::endl;	
 	st.challengeNewcomer();
 	std::cout << std::endl;
-	std::cout << "Current state" << std::endl;
-	std::cout << st << std::endl;	
-	st.challengeNewcomer();
-	std::cout << std::endl;
-	std::cout << "Current state" << std::endl;
-	std::cout << st << std::endl;	
-	st.challengeNewcomer();
-	std::cout << std::endl;
-	std::cout << "Current state" << std::endl;
-	std::cout << st << std::endl;	
-	st.challengeNewcomer();
 
 	return 0;
 }

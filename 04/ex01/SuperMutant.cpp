@@ -6,28 +6,22 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 02:45:10 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 12:45:53 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SuperMutant.hpp"
-#include <string>
-#include <iostream>
 
 void	SuperMutant::takeDamage(int damage)
 {
+	if (damage < 0)
+		return;
 	damage -= 3;
 	if (damage < 0)
-		damage = 0;
+		return;
 	hp_ = hp_ - damage;
 	if (hp_ < 0)
 		hp_ = 0;
-}
-
-SuperMutant::SuperMutant(const SuperMutant& SuperMutant)
-{
-	(void)SuperMutant;
-	std::cout << "SuperMutant Copy constructor called" << std::endl;
 }
 
 SuperMutant::SuperMutant() : Enemy(170, "Super Mutant")
@@ -42,10 +36,19 @@ SuperMutant::~SuperMutant()
 	std::cout << "Aaargh..." << std::endl;
 }
 
-SuperMutant& 	SuperMutant::operator = (const SuperMutant& fixed)
+SuperMutant::SuperMutant(const SuperMutant& other)
 {
-	(void)fixed;
+	std::cout << "SuperMutant Copy constructor called" << std::endl;
+	*this = other;
+}
+
+SuperMutant& 	SuperMutant::operator=(const SuperMutant& other)
+{
 	std::cout << "SuperMutant Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		Enemy::operator=(other);
+	}
 	return (*this);
 }
 

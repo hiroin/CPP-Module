@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 02:24:04 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:11:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Enemy.hpp"
-#include <string>
-#include <iostream>
 
 std::string	Enemy::getType() const
 {
@@ -26,18 +24,14 @@ int		Enemy::getHP() const
 
 void	Enemy::takeDamage(int damage)
 {
+	if (damage < 0)
+		return;
 	hp_ = hp_ - damage;
 	if (hp_ < 0)
 		hp_ = 0;
 }
 
-Enemy::Enemy(const Enemy& Enemy)
-{
-	(void)Enemy;
-	std::cout << "Enemy Copy constructor called" << std::endl;
-}
-
-Enemy::Enemy(int hp, std::string const & type) : hp_(hp), type_(type)
+Enemy::Enemy(int hp, std::string const & type) : type_(type), hp_(hp)
 {
 	std::cout << "Enemy Initial value is set constructor called" << std::endl;
 }
@@ -52,10 +46,20 @@ Enemy::~Enemy()
 	std::cout << "Enemy Destructor called" << std::endl;
 }
 
-Enemy& 	Enemy::operator = (const Enemy& fixed)
+Enemy::Enemy(const Enemy& other)
 {
-	(void)fixed;
+	std::cout << "Enemy Copy constructor called" << std::endl;
+	*this = other;
+}
+
+Enemy& 	Enemy::operator=(const Enemy& other)
+{
 	std::cout << "Enemy Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		type_ = other.type_;
+		hp_ = other.hp_;
+	}
 	return (*this);
 }
 

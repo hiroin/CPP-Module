@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2020/12/08 03:40:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/22 01:58:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,46 @@
 
 int main(void)
 {
-	// ClapTrap c_a;
-	// ClapTrap c_b(100,100,100,1,"No.001",30,20,5);
+	FragTrap ft("FragTrap No.001");
 
-	// std::cout << c_a << std::endl;
-	// std::cout << c_b << std::endl;
+	std::cout << "rangedAttack" << std::endl;
+	ft.rangedAttack("Enemy");
+	std::cout << "meleeAttack" << std::endl;
+	ft.meleeAttack("Enemy");
+	std::cout << std::endl;	
 
-	// c_b.rangedAttack("Enemy");
-	// c_b.meleeAttack("Enemy");
-	// c_b.takeDamage(10);
-	// c_b.takeDamage(10);
-	// c_b.beRepaired(10);
+	ft.takeDamage(10);
+	std::cout << "Current state" << std::endl;
+	std::cout << ft << std::endl;
 
-	//FragTrap f_a;
-	FragTrap f_b(100,100,100,100,1,"No.001",30,20,5);
+	ft.beRepaired(10);
+	std::cout << "Current state" << std::endl;
+	std::cout << ft << std::endl;
 
-	std::cout << f_b << std::endl;
+	ft.vaulthunter_dot_exe("Boss");
+	std::cout << "Current state" << std::endl;
+	std::cout << ft << std::endl;
 
-	f_b.rangedAttack("Enemy");
-	f_b.meleeAttack("Enemy");
-	f_b.takeDamage(10);
-	f_b.takeDamage(10);
-	f_b.beRepaired(10);
-	f_b.vaulthunter_dot_exe("Boss");
-	f_b.vaulthunter_dot_exe("Boss");
-	f_b.vaulthunter_dot_exe("Boss");
-	f_b.vaulthunter_dot_exe("Boss");
-	f_b.vaulthunter_dot_exe("Boss");
+	std::cout << "------------------------------------" << std::endl;	
 
-	//ScavTrap s_a;
-	ScavTrap s_b(100,100,50,100,1,"No.002",20,15,3);
+	ScavTrap st("ScavTrap No.002");
 
-	std::cout << s_b << std::endl;
+	std::cout << "rangedAttack" << std::endl;
+	st.rangedAttack("Enemy");
+	std::cout << "meleeAttack" << std::endl;
+	st.meleeAttack("Enemy");
+	std::cout << std::endl;	
+	
+	st.takeDamage(10);
+	std::cout << "Current state" << std::endl;
+	std::cout << st << std::endl;
 
-	s_b.rangedAttack("Enemy");
-	s_b.meleeAttack("Enemy");
-	s_b.takeDamage(10);
-	s_b.takeDamage(10);
-	s_b.beRepaired(10);
-	s_b.challengeNewcomer();
-	s_b.challengeNewcomer();
-	s_b.challengeNewcomer();
-	s_b.challengeNewcomer();
-	s_b.challengeNewcomer();
+	st.beRepaired(10);
+	std::cout << "Current state" << std::endl;
+	std::cout << st << std::endl;
+		
+	st.challengeNewcomer();
+	std::cout << std::endl;	
 
 	return 0;
 }

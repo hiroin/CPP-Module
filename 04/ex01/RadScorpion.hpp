@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 02:45:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 10:55:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ class RadScorpion : public Enemy
 {
 public:
 	RadScorpion();
-	RadScorpion(int hp, std::string const & type);
 	virtual ~RadScorpion();
-	RadScorpion(const RadScorpion& RadScorpion);
-	RadScorpion& 	operator = (const RadScorpion& RadScorpion);
+	RadScorpion(const RadScorpion& other);
+	RadScorpion&	operator=(const RadScorpion& other);
+
 protected:
+
 private:
 };
 

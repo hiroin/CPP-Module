@@ -6,12 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2021/01/19 04:34:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/20 01:40:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Fixed.hpp"
+#include <climits>
+#include <cfloat>
 
 int main(void)
 {
@@ -31,6 +33,24 @@ int main(void)
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	// std::cout << std::endl;
+	// a = Fixed( 8388607 );
+	// std::cout << "8388607(23bit MAX) is " << a << std::endl;
+	// std::cout << "8388607(23bit MAX) is " << a.toInt() << " as integer" << std::endl;
+	// a = Fixed( -8388608 );
+	// std::cout << "-8388608(23bit MIN) is " << a << std::endl;
+	// std::cout << "-8388608(23bit MIN) is " << a.toInt() << " as integer" << std::endl;
+	// a = Fixed( 8388608 );
+	// std::cout << "8388608(23bit over) is " << a << std::endl;
+	// std::cout << "8388608(23bit over) is " << a.toInt() << " as integer" << std::endl;
+	// a = Fixed( 8388608.0f );
+	// std::cout << "8388607.0f is " << a << std::endl;
+	// std::cout << "8388607.0f is " << a.toInt() << " as integer" << std::endl;
+	// a = Fixed( -8388608.0f );
+	// std::cout << "-8388608.0f is " << a << std::endl;
+	// std::cout << "-8388608.0f is " << a.toInt() << " as integer" << std::endl;
+	// std::cout << std::endl;
 
 	return 0;
 }

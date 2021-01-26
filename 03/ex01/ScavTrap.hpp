@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2021/01/20 06:25:05 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/21 13:38:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ public:
 	ScavTrap& 	operator=(const ScavTrap& ScavTrap);
 
 public:
-	void rangedAttack(std::string const & target);
-	void meleeAttack(std::string const & target);
+	void rangedAttack(std::string const & target) const;
+	void meleeAttack(std::string const & target) const;
 	void takeDamage(int amount);
 	void beRepaired(int amount);
-	void challengeNewcomer(void);
+	void challengeNewcomer(void) const;
 	std::string	getName() const;
 	int	getHitPoints() const;
 	int	getEnergyPoints() const;

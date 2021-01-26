@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 06:09:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 06:23:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Victim.hpp"
-#include <string>
-#include <iostream>
 
 std::string	Victim::getName() const
 {
@@ -24,21 +22,14 @@ void Victim::getPolymorphed() const
 	std::cout << name_ << " has been turned into a cute little sheep!" << std::endl;
 }
 
-Victim::Victim(const Victim& Victim)
-{
-	(void)Victim;
-	std::cout << "Victim Copy constructor called" << std::endl;
-}
-
-Victim::Victim(std::string name)
+Victim::Victim(std::string name) :name_(name)
 {
 	std::cout << "Some random victim called " << name << " just appeared!" << std::endl;
-	name_ = name;
 }
 
 Victim::Victim()
 {
-	//std::cout << "Victim Default constructor called" << std::endl;
+	std::cout << "Victim Default constructor called" << std::endl;
 }
 
 Victim::~Victim()
@@ -46,15 +37,24 @@ Victim::~Victim()
 	std::cout << "Victim " << name_<< " just died for no apparent reason!" << std::endl;
 }
 
-Victim& 	Victim::operator = (const Victim& fixed)
+Victim::Victim(const Victim& other)
 {
-	(void)fixed;
+	std::cout << "Victim Copy constructor called" << std::endl;
+	*this = other;
+}
+
+Victim& 	Victim::operator=(const Victim& other)
+{
 	std::cout << "Victim Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		name_ = other.name_;
+	}
 	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& os, const Victim& Victim)
 {
-	os << "I am " << Victim.getName() << " and I like otters!" << std::endl;
+	os << "I'm " << Victim.getName() << " and I like otters!" << std::endl;
     return os;
 }

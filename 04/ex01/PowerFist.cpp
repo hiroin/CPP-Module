@@ -6,24 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/14 07:06:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 08:32:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AWeapon.hpp"
 #include "PowerFist.hpp"
-#include <string>
-#include <iostream>
 
 void PowerFist::attack() const
 {
 	std::cout << "* pschhh... SBAM! *" << std::endl;
-}
-
-PowerFist::PowerFist(const PowerFist& PowerFist)
-{
-	(void)PowerFist;
-	std::cout << "PowerFist Copy constructor called" << std::endl;
 }
 
 PowerFist::PowerFist() : AWeapon("Power Fist", 8, 50)
@@ -36,10 +27,19 @@ PowerFist::~PowerFist()
 	std::cout << "PowerFist Destructor called" << std::endl;
 }
 
-PowerFist& 	PowerFist::operator = (const PowerFist& fixed)
+PowerFist::PowerFist(const PowerFist& other)
 {
-	(void)fixed;
+	std::cout << "PowerFist Copy constructor called" << std::endl;
+	*this = other;
+}
+
+PowerFist& 	PowerFist::operator = (const PowerFist& other)
+{
 	std::cout << "PowerFist Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		AWeapon::operator=(other);
+	}
 	return (*this);
 }
 

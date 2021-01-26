@@ -6,43 +6,21 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 05:19:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/22 06:35:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include <string>
-#include <iostream>
-#include <cmath>
-// #include <random>
 
-void ClapTrap::rangedAttack(std::string const & target)
+void ClapTrap::takeDamage(int amount)
 {
-	std::cout << "FR4G-TP ";
-	std::cout << name_;
-	std::cout << " attacks ";
-	std::cout << target;
-	std::cout << " at range, causing ";
-	std::cout << ranged_attack_damage_;
-	std::cout << " points of damage!" << std::endl;
-}
+	int	p;
 
-void ClapTrap::meleeAttack(std::string const & target)
-{
-	std::cout << "FR4G-TP ";
-	std::cout << name_;
-	std::cout << " attacks ";
-	std::cout << target;
-	std::cout << " at melee, causing ";
-	std::cout << melee_attack_damage_;
-	std::cout << " points of damage!" << std::endl;
-}
-
-void ClapTrap::takeDamage(unsigned int amount)
-{
-	unsigned int	p;
-
+	if (amount <= 0)
+		return ;
 	p = amount - armor_damage_reduction_;
+	if (p < 0)
+		p = 0;
 	std::cout << "Enemy attack!" << std::endl;
 	std::cout << "FR4G-TP ";
 	std::cout << name_;
@@ -59,11 +37,15 @@ void ClapTrap::takeDamage(unsigned int amount)
 	std::cout << " remaining." << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(int amount)
 {
+	if (amount <= 0)
+		return ;
 	std::cout << "FR4G-TP ";
 	std::cout << name_;
-	std::cout << " has repaired." << std::endl;
+	std::cout << " has repaired ";
+	std::cout << amount;
+	std::cout << " points." << std::endl;
 
 	hit_points_ += amount;
 	if (hit_points_ > max_hit_points_)
@@ -80,16 +62,33 @@ std::string	ClapTrap::getName() const
 	return name_;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& ClapTrap)
+int	ClapTrap::getHitPoints() const
 {
-	(void)ClapTrap;
-	std::cout << "ClapTrap Copy constructor called" << std::endl;
+	return hit_points_;
 }
 
-ClapTrap::ClapTrap(std::string name)
+int	ClapTrap::getEnergyPoints() const
+{
+	return energy_points_;
+}
+
+int	ClapTrap::getMaxEnergyPoints() const
+{
+	return max_energy_points_;
+}
+
+ClapTrap::ClapTrap(const std::string &name) :
+	  hit_points_(80)
+	, max_hit_points_(80)
+	, energy_points_(80)
+	, max_energy_points_(80)
+	, level_(1)
+	, name_(name)
+	, melee_attack_damage_(15)
+	, ranged_attack_damage_(5)
+	, armor_damage_reduction_(1)
 {
 	std::cout << "ClapTrap Name constructor called" << std::endl;
-	name_ = name;
 }
 
 ClapTrap::ClapTrap(
@@ -116,25 +115,41 @@ ClapTrap::ClapTrap(
 	std::cout << "ClapTrap All parameter set constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap() : hit_points_(100), max_hit_points_(100), energy_points_(100), max_energy_points_(100), level_(1), name_("default"), melee_attack_damage_(30), ranged_attack_damage_(20), armor_damage_reduction_(5)
-{
-	std::cout << "ClapTrap Default constructor called" << std::endl;
-}
-
 ClapTrap::~ClapTrap()
 {
 	std::cout << "ClapTrap Destructor called" << std::endl;
 }
 
-ClapTrap& 	ClapTrap::operator = (const ClapTrap& fixed)
+ClapTrap::ClapTrap(const ClapTrap& other)
 {
-	(void)fixed;
+	std::cout << "ClapTrap Copy constructor called" << std::endl;
+	*this = other;
+}
+
+ClapTrap& 	ClapTrap::operator=(const ClapTrap& other)
+{
 	std::cout << "ClapTrap Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		hit_points_ = other.hit_points_;
+		max_hit_points_ = other.max_hit_points_;
+		energy_points_ = other.energy_points_;
+		level_ = other.level_;
+		name_ = other.name_;
+		melee_attack_damage_ = other.melee_attack_damage_;
+		ranged_attack_damage_ = other.ranged_attack_damage_;
+		armor_damage_reduction_ = other.armor_damage_reduction_;
+	}
 	return (*this);
+}
+
+ClapTrap::ClapTrap()
+{
 }
 
 std::ostream&	operator<<(std::ostream& os, const ClapTrap& ClapTrap)
 {
-	os << ClapTrap.getName();
+	os << "HitPoints    = " << ClapTrap.getHitPoints() << std::endl;
+	os << "EnergyPoints = " << ClapTrap.getEnergyPoints() << std::endl;
     return os;
 }

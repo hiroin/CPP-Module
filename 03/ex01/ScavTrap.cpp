@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/20 12:26:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/21 13:39:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-void ScavTrap::rangedAttack(std::string const & target)
+void ScavTrap::rangedAttack(std::string const & target) const
 {
 	std::cout << "ScavTrap FR4G-TP ";
 	std::cout << name_;
@@ -23,7 +23,7 @@ void ScavTrap::rangedAttack(std::string const & target)
 	std::cout << " points of damage!" << std::endl;
 }
 
-void ScavTrap::meleeAttack(std::string const & target)
+void ScavTrap::meleeAttack(std::string const & target) const
 {
 	std::cout << "ScavTrap FR4G-TP ";
 	std::cout << name_;
@@ -79,10 +79,8 @@ void ScavTrap::beRepaired(int amount)
 	std::cout << " remaining." << std::endl;
 }
 
-void ScavTrap::challengeNewcomer(void)
+void ScavTrap::challengeNewcomer(void) const
 {
-	int				i;
-	int				r;
 	static int		flag = 0;
 	std::string		challenges[] =
 	{
@@ -93,30 +91,13 @@ void ScavTrap::challengeNewcomer(void)
 		"Vortec Time Break!"
 	};
 
-	if (energy_points_ < 25)
-	{
-		std::cout << "ScavTrap FR4G-TP ";
-		std::cout << name_;
-		std::cout << " are not enough energy_points." << std::endl;
-		return;
-	}
-	else
-	{
-		energy_points_ -= 25;
-	}
 	std::cout << "Newcomer!" << std::endl;
 	if (flag == 0)
 	{
 		srand((unsigned int)time(NULL));
 		flag = 1;
 	}
-	i = 0;
-	while (i < 5)
-	{
-		r = rand() % 5;
-		std::cout << challenges[r] << std::endl;
-		i++;
-	}
+	std::cout << challenges[rand() % 5] << std::endl;
 }
 
 std::string	ScavTrap::getName() const
@@ -142,9 +123,10 @@ int	ScavTrap::getMaxEnergyPoints() const
 ScavTrap::ScavTrap(std::string name) :
 	hit_points_(100),
 	max_hit_points_(100),
-	energy_points_(100),
-	max_energy_points_(100),
-	level_(1), name_(name),
+	energy_points_(50),
+	max_energy_points_(50),
+	level_(1),
+	name_(name),
 	melee_attack_damage_(20),
 	ranged_attack_damage_(15),
 	armor_damage_reduction_(3)
@@ -155,8 +137,8 @@ ScavTrap::ScavTrap(std::string name) :
 ScavTrap::ScavTrap() :
 	hit_points_(100),
 	max_hit_points_(100),
-	energy_points_(100),
-	max_energy_points_(100),
+	energy_points_(50),
+	max_energy_points_(50),
 	level_(1),
 	name_("default"),
 	melee_attack_damage_(20),

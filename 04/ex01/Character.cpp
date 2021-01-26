@@ -6,25 +6,24 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/15 03:24:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/26 11:59:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
-#include "AWeapon.hpp"
-#include "Enemy.hpp"
-#include <string>
-#include <iostream>
-
 
 void Character::attack(Enemy* enemy)
 {
-	if (aweapon_ == NULL || !enemy)
+	if (!aweapon_ || !enemy)
 		return ;
 	if (ap_ < aweapon_->getAPCost())
+	{
+		std::cout << "Not enough AP!" << std::endl;
 		return ;
+	}
 	ap_ -= aweapon_->getAPCost();
-	std::cout << getName() << " attacks " << enemy->getType() << " with a " << aweapon_->getName() << std::endl;
+	std::cout << name_ << " attacks " << enemy->getType() << " with a " << aweapon_->getName() << std::endl;
+	aweapon_->attack();
 	enemy->takeDamage(aweapon_->getDamage());
 	if (enemy->getHP() == 0)
 	{
@@ -47,7 +46,7 @@ void Character::equip(AWeapon* aweapon)
 
 std::string	Character::getWeaponName() const
 {
-	if (aweapon_ == NULL)
+	if (!aweapon_)
 		return "unarmed";
 	return aweapon_->getName();
 }
@@ -57,20 +56,16 @@ int	Character::getAp() const
 	return ap_;
 }
 
-std::string	Character::getName() const
+std::string	const & Character::getName() const
 {
 	return name_;
 }
 
-Character::Character(const Character& Character)
-{
-	(void)Character;
-	std::cout << "Character Copy constructor called" << std::endl;
-}
 
-Character::Character(std::string const & name) : name_(name)
+Character::Character(std::string const & name) : name_(name), ap_(40)
 {
 	std::cout << "Character Initial value is set constructor called" << std::endl;
+	aweapon_ = NULL;
 }
 
 Character::Character()
@@ -83,19 +78,30 @@ Character::~Character()
 	std::cout << "Character Destructor called" << std::endl;
 }
 
-Character& 	Character::operator = (const Character& fixed)
+Character::Character(const Character& other)
 {
-	(void)fixed;
+	std::cout << "Character Copy constructor called" << std::endl;
+	*this = other;
+}
+
+Character& 	Character::operator=(const Character& other)
+{
 	std::cout << "Character Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		name_ = other.name_;
+		ap_ = other.ap_;
+		aweapon_ = other.aweapon_;
+	}
 	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& os, const Character& Character)
 {
 	os << "Character" << std::endl;
-	os << " name : " << Character.getName() << std::endl;
-	os << " Weapon" << std::endl;
-	os << "  name : " << Character.getWeaponName() << std::endl;
+	os << " name   : " << Character.getName() << std::endl;
+	os << " weapon : " <<  Character.getWeaponName() << std::endl;
+	os << " AP     : " <<  Character.getAp() << std::endl;
 	os << Character.getName() << " has " << Character.getAp() << " AP and wields a " << Character.getWeaponName() << std::endl;
     return os;
 }
