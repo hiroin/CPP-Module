@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:58:08 by user42            #+#    #+#             */
-/*   Updated: 2020/12/22 14:12:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 03:13:51 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,80 +18,117 @@
 
 int main(void)
 {
-	// ISpaceMarine* bob = new TacticalMarine();
-	// TacticalMarine* bob_u = dynamic_cast<TacticalMarine*>(bob);
+	std::cout << "----------";
+	std::cout << "subject test";
+	std::cout << "----------------------------------" << std::endl;
+	{
+		ISpaceMarine* bob = new TacticalMarine;
+		ISpaceMarine* jim = new AssaultTerminator;
+		ISquad* vlc = new Squad;
+		vlc->push(bob);
+		vlc->push(jim);
+		for (int i = 0; i < vlc->getCount(); ++i)
+		{
+			ISpaceMarine* cur = vlc->getUnit(i);
+			cur->battleCry();
+			cur->rangedAttack();
+			cur->meleeAttack();
+		}
+		delete vlc;
+	}
+	std::cout << std::endl;
+	std::cout << "----------";
+	std::cout << "my test";
+	std::cout << "----------------------------------" << std::endl;
 
-	// std::cout << bob << std::endl;
-	// std::cout << *bob_u << std::endl;
+	std::cout << "Create TacticalMarine" << std::endl;
+	ISpaceMarine* bob = new TacticalMarine();
+	std::cout << std::endl;
 
-	// ISpaceMarine* bob_clone = bob->clone();
-	// TacticalMarine* bob_clone_u = dynamic_cast<TacticalMarine*>(bob_clone);
-	// std::cout << bob_clone << std::endl;
-	// std::cout << *bob_clone_u << std::endl;
+	std::cout << "Create AssaultTerminator" << std::endl;
+	ISpaceMarine* jim = new AssaultTerminator;
+	std::cout << std::endl;
 
-	// ISpaceMarine* jim = new AssaultTerminator;
+	std::cout << "Create Squad" << std::endl;
+	ISquad* vlc = new Squad;
+	std::cout << "number of passengers : " << vlc->getCount() << std::endl;
+	std::cout << std::endl;
 
-	// ISquad* vlc = new Squad;
-	// Squad* vlc_u = dynamic_cast<Squad*>(vlc);
-	// std::cout << *vlc_u << std::endl;
+	std::cout << "----------";
+	std::cout << "take on board";
+	std::cout << "----------------------------------" << std::endl;
+	std::cout << "push(bob)" << std::endl;
+	vlc->push(bob);
+	std::cout << "number of passengers : " << vlc->getCount() << std::endl;
+	std::cout << "getUnit(0)" << std::endl;
+	std::cout << "getUnit(0) address : " << vlc->getUnit(0) << std::endl;
+	std::cout << "bob's address      : " << bob << std::endl;
+	std::cout << std::endl;
+	
+	std::cout << "push(jim)" << std::endl;
+	vlc->push(jim);
+	std::cout << "number of passengers : " << vlc->getCount() << std::endl;
+	std::cout << "getUnit(1)" << std::endl;
+	std::cout << "getUnit(1) address : " << vlc->getUnit(1) << std::endl;
+	std::cout << "jim's address      : " << jim << std::endl;
+	std::cout << std::endl;
 
-	// std::cout << std::endl;
-	// std::cout << vlc->getCount() << std::endl;
-	// vlc->push(bob);
-	// std::cout << vlc->getCount() << std::endl;
-	// vlc->getUnit(0);
-	// TacticalMarine* tmpTacticalMarine = dynamic_cast<TacticalMarine*>(vlc->getUnit(0));
-	// std::cout << *tmpTacticalMarine;
-	// vlc->push(jim);
-	// std::cout << vlc->getCount() << std::endl;
-	// tmpTacticalMarine = dynamic_cast<TacticalMarine*>(vlc->getUnit(0));
-	// std::cout << *tmpTacticalMarine;
-	// AssaultTerminator* tmpAssaultTerminator = dynamic_cast<AssaultTerminator*>(vlc->getUnit(1));
-	// std::cout << *tmpAssaultTerminator;
+	std::cout << "push(NULL)" << std::endl;
+	vlc->push(NULL);
+	std::cout << "number of passengers : " << vlc->getCount() << std::endl;
+	std::cout << std::endl;
 
-	// //同じユニットを加えたときに無視する
-	// std::cout << "push(bob)" << std::endl;
-	// vlc->push(bob);
-	// std::cout << vlc->getCount() << std::endl;
+	std::cout << "push(bob) : Bob's already on it." << std::endl;
+	vlc->push(bob);
+	std::cout << "number of passengers : " << vlc->getCount() << std::endl;
+	std::cout << std::endl;
 
-	//コピーコンストラクタ
-	// std::cout << "--------------------" << std::endl;
-	// std::cout << "copy construction" << std::endl;
-	// ISpaceMarine* tacticalMarine_001 = new TacticalMarine();
-	// ISpaceMarine* assaultTerminator_001 = new AssaultTerminator();
-	// Squad vlc_cc;
-	// vlc_cc.push(tacticalMarine_001);
-	// vlc_cc.push(assaultTerminator_001);
-	// Squad vlc_cc_copy = vlc_cc;
-	// std::cout << vlc_cc.getCount() << std::endl;
-	// std::cout << vlc_cc_copy.getCount() << std::endl;
-	// TacticalMarine* tmpTacticalMarine = dynamic_cast<TacticalMarine*>(vlc_cc_copy.getUnit(0));
-	// std::cout << *tmpTacticalMarine;
-	// AssaultTerminator* tmpAssaultTerminator = dynamic_cast<AssaultTerminator*>(vlc_cc_copy.getUnit(1));
-	// std::cout << *tmpAssaultTerminator;
-	// std::cout << "--------------------" << std::endl;
+	std::cout << "----------";
+	std::cout << "copy constructor";
+	std::cout << "----------------------------------" << std::endl;
 
-	//代入演算子
-	std::cout << "--------------------" << std::endl;
-	std::cout << "assignation" << std::endl;
+	std::cout << "exec : vlcCopy(*(dynamic_cast<Squad*>(vlc)));" << std::endl;
+	std::cout << std::endl;
+	Squad vlcCopy(*(dynamic_cast<Squad*>(vlc)));
+	std::cout << "number of passengers : " << vlcCopy.getCount() << std::endl;
+	std::cout << "getUnit(0) address : " << vlcCopy.getUnit(0) << std::endl;
+	std::cout << "getUnit(0) battleCry : ";
+	vlcCopy.getUnit(0)->battleCry();
+	std::cout << "getUnit(1) address : " << vlcCopy.getUnit(1) << std::endl;
+	std::cout << "getUnit(1) battleCry : ";
+	vlcCopy.getUnit(1)->battleCry();
+	std::cout << std::endl;
+
+	std::cout << "----------";
+	std::cout << "assignation";
+	std::cout << "----------------------------------" << std::endl;
+	std::cout << "preparation" << std::endl;
+	Squad vlcAssignation;
 	ISpaceMarine* tacticalMarine_001 = new TacticalMarine();
 	ISpaceMarine* tacticalMarine_002 = new TacticalMarine();
 	ISpaceMarine* assaultTerminator_001 = new AssaultTerminator();
-	Squad vlc_cc;
-	vlc_cc.push(tacticalMarine_001);
-	vlc_cc.push(assaultTerminator_001);
-	std::cout << vlc_cc.getCount() << std::endl;
-	Squad vlc_cc_assignation;
-	vlc_cc_assignation.push(tacticalMarine_002);
-	std::cout << vlc_cc_assignation.getCount() << std::endl;
-	vlc_cc_assignation = vlc_cc;
-	std::cout << vlc_cc_assignation.getCount() << std::endl;
-	std::cout << "--------------------" << std::endl;
+	vlcAssignation.push(tacticalMarine_001);
+	vlcAssignation.push(tacticalMarine_002);
+	vlcAssignation.push(assaultTerminator_001);
+	std::cout << "number of passengers on the vlcAssignation : " << vlcAssignation.getCount() << std::endl;
+	std::cout << std::endl;
 
-	// delete vlc;
-	// //delete bob;
-	// delete bob_clone;
-	// //delete jim;
+	std::cout << "exec : vlcAssignation(3person) = vlc(2person)" << std::endl;
+	std::cout << std::endl;
+	vlcAssignation = (*(dynamic_cast<Squad*>(vlc)));
+	std::cout << "number of passengers on the vlcAssignation : " << vlcAssignation.getCount() << std::endl;
+	std::cout << "getUnit(0) address : " << vlcAssignation.getUnit(0) << std::endl;
+	std::cout << "getUnit(0) battleCry : ";
+	vlcAssignation.getUnit(0)->battleCry();
+	std::cout << "getUnit(1) address : " << vlcAssignation.getUnit(1) << std::endl;
+	std::cout << "getUnit(1) battleCry : ";
+	vlcAssignation.getUnit(1)->battleCry();
+	std::cout << std::endl;
+	
+	std::cout << "----------";
+	std::cout << "post-processing";
+	std::cout << "----------------------------------" << std::endl;
+	delete vlc;
 
 	return 0;
 }

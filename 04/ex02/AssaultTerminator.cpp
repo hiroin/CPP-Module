@@ -6,17 +6,14 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/19 08:32:00 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 03:05:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AssaultTerminator.hpp"
-#include <string>
-#include <iostream>
 
 ISpaceMarine*	AssaultTerminator::clone() const
 {
-	//現在のオブジェクトのコピーを返します。
 	ISpaceMarine* m = new AssaultTerminator();
 	*m = *this;
 	return m;
@@ -37,33 +34,32 @@ void 			AssaultTerminator::meleeAttack() const
 	std::cout << "* attacks with chainfists *" << std::endl;
 }
 
-AssaultTerminator::AssaultTerminator(const AssaultTerminator& AssaultTerminator)
-{
-	(void)AssaultTerminator;
-	std::cout << "AssaultTerminator Copy constructor called" << std::endl;
-}
-
 AssaultTerminator::AssaultTerminator()
 {
-	std::cout << "AssaultTerminator Default constructor called" << std::endl;
 	std::cout << "* teleports from space *" << std::endl;
 }
 
 AssaultTerminator::~AssaultTerminator()
 {
-	std::cout << "AssaultTerminator Destructor called" << std::endl;
 	std::cout << "I’ll be back..." << std::endl;
 }
 
-AssaultTerminator& 	AssaultTerminator::operator = (const AssaultTerminator& fixed)
+AssaultTerminator::AssaultTerminator(const AssaultTerminator& other)
 {
-	(void)fixed;
+	std::cout << "AssaultTerminator Copy constructor called" << std::endl;
+	*this = other;
+}
+
+AssaultTerminator& 	AssaultTerminator::operator=(const AssaultTerminator& other)
+{
 	std::cout << "AssaultTerminator Assignation operator called" << std::endl;
+	(void)other;
 	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& os, const AssaultTerminator& AssaultTerminator)
 {
+	(void)AssaultTerminator;
 	os << "AssaultTerminator" << std::endl;
     return os;
 }

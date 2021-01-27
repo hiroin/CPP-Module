@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/22 14:11:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 03:00:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Squad.hpp"
-#include <string>
-#include <iostream>
 
 int Squad::getCount() const
 {
@@ -30,6 +28,8 @@ int Squad::push(ISpaceMarine* marine)
 {
 	int		i;
 	
+	if (!marine)
+		return (count_);
 	i = 0;
 	while (i < count_)
 	{
@@ -38,7 +38,7 @@ int Squad::push(ISpaceMarine* marine)
 			return (count_);
 		}
 		i++;
-	}	
+	}
 	count_++;
 	ISpaceMarine** tmp = new ISpaceMarine*[count_];
 	i = 0;
@@ -52,48 +52,6 @@ int Squad::push(ISpaceMarine* marine)
 		delete [] marines_;
 	marines_ = tmp;	
 	return (count_);
-}
-
-Squad::Squad(const Squad& Squad)
-{
-	int		i;
-
-	std::cout << "Squad Copy constructor called" << std::endl;
-	count_ = Squad.getCount();
-	ISpaceMarine** tmp = new ISpaceMarine*[count_];
-	i = 0;
-	while (i < count_)
-	{
-		tmp[i] = Squad.getUnit(i)->clone();
-		i++;
-	}
-	marines_ = tmp;	
-}
-
-Squad& 	Squad::operator = (const Squad& Squad)
-{
-	int		i;
-
-	std::cout << "Squad Assignation operator called" << std::endl;
-	i = 0;
-	while (i < count_)
-	{
-		//delete marines_[i];
-		delete this->getUnit(i);
-		i++;
-	}
-	if (count_ > 0)
-		delete marines_;
-	count_ = Squad.getCount();
-	ISpaceMarine** tmp = new ISpaceMarine*[count_];
-	i = 0;
-	while (i < count_)
-	{
-		tmp[i] = Squad.getUnit(i)->clone();
-		i++;
-	}
-	marines_ = tmp;	
-	return (*this);
 }
 
 Squad::Squad() : count_(0)
@@ -114,6 +72,39 @@ Squad::~Squad()
 	}
 	if(count_ > 0)
 		delete [] marines_;
+}
+
+Squad::Squad(const Squad& other) : count_(0)
+{
+	std::cout << "Squad Copy constructor called" << std::endl;
+	*this = other;
+}
+
+Squad& 	Squad::operator=(const Squad& other)
+{
+	int		i;
+
+	std::cout << "Squad Assignation operator called" << std::endl;
+	if (this == &other)
+		return (*this);
+	i = 0;
+	while (i < count_)
+	{
+		delete marines_[i];
+		i++;
+	}
+	if (count_ > 0)
+		delete [] marines_;
+	count_ = other.getCount();
+	ISpaceMarine** tmp = new ISpaceMarine*[count_];
+	i = 0;
+	while (i < count_)
+	{
+		tmp[i] = other.getUnit(i)->clone();
+		i++;
+	}
+	marines_ = tmp;	
+	return (*this);
 }
 
 std::ostream&	operator<<(std::ostream& os, const Squad& Squad)
