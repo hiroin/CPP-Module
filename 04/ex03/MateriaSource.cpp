@@ -6,13 +6,11 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 14:28:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/28 06:07:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MateriaSource.hpp"
-#include <string>
-#include <iostream>
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
@@ -47,21 +45,11 @@ void MateriaSource::learnMateria(AMateria* m)
 		{
 			materias_[i] = m;
 			std::cout << "learn " << materias_[i]->getType() << std::endl;
-			break;
+			return;
 		}
 		i++;
 	}
-}
-
-MateriaSource::MateriaSource()
-{
-	int		i;
-
-	std::cout << "MateriaSource Default constructor called" << std::endl;
-	materias_ = new AMateria*[maxMaterias_];
-	i = 0;
-	while (i < maxMaterias_)
-		materias_[i++] = NULL;
+	delete m;	
 }
 
 AMateria* MateriaSource::getMateria(int idx) const
@@ -73,6 +61,17 @@ AMateria* MateriaSource::getMateria(int idx) const
 		return (materias_[idx]);
 	}
 	return (NULL);
+}
+
+MateriaSource::MateriaSource() : maxMaterias_(4)
+{
+	int		i;
+
+	std::cout << "MateriaSource Default constructor called" << std::endl;
+	materias_ = new AMateria*[maxMaterias_];
+	i = 0;
+	while (i < maxMaterias_)
+		materias_[i++] = NULL;
 }
 
 MateriaSource::~MateriaSource()
@@ -92,29 +91,34 @@ MateriaSource::~MateriaSource()
 	delete [] materias_;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& MateriaSource)
+MateriaSource::MateriaSource(const MateriaSource& other) : maxMaterias_(4)
 {
 	int		i;
-	std::cout << "MateriaSource Copy constructor called" << std::endl;
 
+	std::cout << "MateriaSource Copy constructor called" << std::endl;
 	materias_ = new AMateria*[maxMaterias_];
 	i = 0;
 	while (i < maxMaterias_)
-	{
-		if(MateriaSource.materias_[i] != NULL)
-		{
-			materias_[i] = MateriaSource.materias_[i]->clone();
-		}
-		else
-		{
-			materias_[i] = NULL;
-		}
+		materias_[i++] = NULL;
+	*this = other;
+	// materias_ = new AMateria*[maxMaterias_];
+	// i = 0;
+	// while (i < maxMaterias_)
+	// {
+	// 	if(other.materias_[i] != NULL)
+	// 	{
+	// 		materias_[i] = other.materias_[i]->clone();
+	// 	}
+	// 	else
+	// 	{
+	// 		materias_[i] = NULL;
+	// 	}
 		
-		i++;
-	}
+	// 	i++;
+	// }
 }
 
-MateriaSource& 	MateriaSource::operator = (const MateriaSource& fixed)
+MateriaSource& 	MateriaSource::operator=(const MateriaSource& other)
 {
 	int		i;
 
@@ -131,15 +135,14 @@ MateriaSource& 	MateriaSource::operator = (const MateriaSource& fixed)
 	i = 0;
 	while (i < maxMaterias_)
 	{
-		if(fixed.materias_[i] != NULL)
+		if(other.materias_[i] != NULL)
 		{
-			materias_[i] = fixed.materias_[i]->clone();
+			materias_[i] = other.materias_[i]->clone();
 		}
-		else
-		{
-			materias_[i] = NULL;
-		}
-		
+		// else
+		// {
+		// 	materias_[i] = NULL;
+		// }
 		i++;
 	}
 	return (*this);

@@ -6,42 +6,16 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 10:53:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/28 05:33:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
 #include "Character.hpp"
-#include <string>
-#include <iostream>
 
 std::string const & Character::getName() const
 {
 	return name_;
-}
-
-Character::Character()
-{
-	int		i;
-
-	std::cout << "Character Default constructor called" << std::endl;
-	name_ = "default";
-	materias_ = new AMateria*[maxMaterias_];
-	i = 0;
-	while (i < maxMaterias_)
-		materias_[i++] = NULL;
-}
-
-Character::Character(std::string const & name) : name_(name)
-{
-	int		i;
-
-	std::cout << "Character Name constructor called" << std::endl;
-	name_ = name;
-	materias_ = new AMateria*[maxMaterias_];
-	i = 0;
-	while (i < maxMaterias_)
-		materias_[i++] = NULL;
 }
 
 void Character::equip(AMateria* m)
@@ -96,6 +70,29 @@ AMateria* Character::getMateria(int idx) const
 	return (NULL);
 }
 
+Character::Character() : maxMaterias_(4)
+{
+	int		i;
+
+	std::cout << "Character Default constructor called" << std::endl;
+	name_ = "default";
+	materias_ = new AMateria*[maxMaterias_];
+	i = 0;
+	while (i < maxMaterias_)
+		materias_[i++] = NULL;
+}
+
+Character::Character(std::string const & name) : maxMaterias_(4), name_(name)
+{
+	int		i;
+
+	std::cout << "Character Name constructor called" << std::endl;
+	materias_ = new AMateria*[maxMaterias_];
+	i = 0;
+	while (i < maxMaterias_)
+		materias_[i++] = NULL;
+}
+
 Character::~Character()
 {
 	int		i;
@@ -113,30 +110,19 @@ Character::~Character()
 	delete [] materias_;
 }
 
-Character::Character(const Character& character)
+Character::Character(const Character& other) : maxMaterias_(4), name_(other.name_)
 {
 	int		i;
-	std::cout << "Character Copy constructor called" << std::endl;
 
-	name_ = character.name_;
+	std::cout << "Character Copy constructor called" << std::endl;
 	materias_ = new AMateria*[maxMaterias_];
 	i = 0;
 	while (i < maxMaterias_)
-	{
-		if(character.materias_[i] != NULL)
-		{
-			materias_[i] = character.materias_[i]->clone();
-		}
-		else
-		{
-			materias_[i] = NULL;
-		}
-		
-		i++;
-	}
+		materias_[i++] = NULL;
+	*this = other;
 }
 
-Character& 	Character::operator = (const Character& fixed)
+Character& 	Character::operator=(const Character& other)
 {
 	int		i;
 
@@ -150,13 +136,13 @@ Character& 	Character::operator = (const Character& fixed)
 		}
 		i++;
 	}
-	name_ = fixed.name_;
+	name_ = other.name_;
 	i = 0;
 	while (i < maxMaterias_)
 	{
-		if(fixed.materias_[i] != NULL)
+		if(other.materias_[i] != NULL)
 		{
-			materias_[i] = fixed.materias_[i]->clone();
+			materias_[i] = other.materias_[i]->clone();
 		}
 		else
 		{

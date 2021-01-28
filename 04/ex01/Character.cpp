@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2021/01/26 11:59:21 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 05:21:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	Character::getAp() const
 	return ap_;
 }
 
-std::string	const & Character::getName() const
+std::string	Character::getName() const
 {
 	return name_;
 }

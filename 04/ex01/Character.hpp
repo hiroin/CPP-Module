@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 02:00:07 by user42            #+#    #+#             */
-/*   Updated: 2021/01/26 11:17:36 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 05:20:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ public:
 	void recoverAP();
 	void equip(AWeapon*);
 	void attack(Enemy*);
-	std::string	const & getName() const;
+	std::string	virtual getName() const;
 	int	getAp() const;
 	std::string	getWeaponName() const;
 

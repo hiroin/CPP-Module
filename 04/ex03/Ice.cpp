@@ -6,30 +6,27 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 14:16:01 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:51:01 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
-#include "Character.hpp"
-#include <string>
-#include <iostream>
+#include "ICharacter.hpp"
 
-// void Ice::use(ICharacter& target)
-// {
-// 	(void)target;
-// 	xp_ += 10;
-// 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-// }
-
-void Ice::outputMessage(ICharacter& target) const
+void Ice::use(ICharacter& target)
 {
+	AMateria::use(target);
 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
+// void Ice::outputMessage(ICharacter& target) const
+// {
+// 	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+// }
+
 AMateria* Ice::clone() const
 {
-	AMateria *ice = new Ice(type_);
+	Ice *ice = new Ice();
 	*ice = *this;
 	return ice;
 }
@@ -39,26 +36,24 @@ Ice::Ice() : AMateria("ice")
 	std::cout << "Ice Default constructor called" << std::endl;
 }
 
-Ice::Ice(std::string const & type) : AMateria(type)
-{
-	std::cout << "Ice set type constructor called" << std::endl;
-}
-
 Ice::~Ice()
 {
 	std::cout << "Ice Destructor called" << std::endl;
 }
 
-Ice::Ice(const Ice& ice)
+Ice::Ice(const Ice& other) : AMateria("ice")
 {
-	(void)ice;
 	std::cout << "Ice Copy constructor called" << std::endl;
+	*this = other;
 }
 
-Ice& 	Ice::operator = (const Ice& fixed)
+Ice& 	Ice::operator=(const Ice& other)
 {
-	(void)fixed;
 	std::cout << "Ice Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		AMateria::operator=(other);
+	}
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2020/12/24 15:19:06 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:52:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,21 @@
 # include <string>
 # include "AMateria.hpp"
 
+class ICharacter;
 class Cure : public AMateria
 {
-private:
-protected:
-	virtual void outputMessage(ICharacter& target) const;
 public:
-	Cure(std::string const & type);
 	Cure();
 	virtual ~Cure();
+	Cure(const Cure& other);
+	Cure&	operator=(const Cure& other);	
+
+public:
 	virtual AMateria* clone() const;
-	//virtual void use(ICharacter& target);
-	Cure(const Cure& Cure);
-	Cure& 	operator = (const Cure& Cure);	
+	virtual void use(ICharacter& target);
+
+protected:
+private:
 };
 
 std::ostream&	operator<<(std::ostream& os, const Cure& Cure);

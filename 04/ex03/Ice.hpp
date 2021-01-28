@@ -6,30 +6,34 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2020/12/24 15:11:55 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:44:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICE_HPP
 # define ICE_HPP
 
-# include <iostream>
 # include <string>
+# include <iostream>
 # include "AMateria.hpp"
 
+class ICharacter;
 class Ice : public AMateria
 {
-private:
-protected:
-	virtual void outputMessage(ICharacter& target) const;
 public:
-	Ice(std::string const & type);
 	Ice();
 	virtual ~Ice();
-	virtual AMateria* clone() const;
-	//virtual void use(ICharacter& target);
-	Ice(const Ice& Ice);
-	Ice& 	operator = (const Ice& Ice);	
+	Ice(const Ice& other);
+	Ice&	operator=(const Ice& other);
+
+public:
+	virtual AMateria*	clone() const;
+	virtual void		use(ICharacter& target);
+
+protected:
+	// virtual void outputMessage(ICharacter& target) const;
+
+private:
 };
 
 std::ostream&	operator<<(std::ostream& os, const Ice& Ice);

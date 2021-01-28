@@ -6,20 +6,18 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 09:11:20 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:43:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AMateria.hpp"
-#include "Character.hpp"
-#include <string>
-#include <iostream>
+#include "ICharacter.hpp"
 
 void AMateria::use(ICharacter& target)
 {
 	(void)target;
 	xp_ += 10;
-	outputMessage(target);
+	//outputMessage(target);
 }
 
 // void AMateria::outputMessage(ICharacter& target) const
@@ -37,16 +35,14 @@ std::string const & AMateria::getType() const
 	return type_;
 }
 
-AMateria::AMateria() : xp_(0)
+AMateria::AMateria() : type_("default"), xp_(0) 
 {
 	std::cout << "AMateria Default constructor called" << std::endl;
-	type_ = "default";
 }
 
-AMateria::AMateria(std::string const & type) : xp_(0)
+AMateria::AMateria(std::string const & type) : type_(type), xp_(0)
 {
 	std::cout << "AMateria set type constructor called" << std::endl;
-	type_ = type;
 }
 
 AMateria::~AMateria()
@@ -54,16 +50,19 @@ AMateria::~AMateria()
 	std::cout << "AMateria Destructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria& AMateria)
+AMateria::AMateria(const AMateria& other)
 {
-	(void)AMateria;
 	std::cout << "AMateria Copy constructor called" << std::endl;
+	*this = other;
 }
 
-AMateria& 	AMateria::operator = (const AMateria& fixed)
+AMateria& 	AMateria::operator=(const AMateria& other)
 {
 	std::cout << "AMateria Assignation operator called" << std::endl;
-	xp_ = fixed.xp_;
+	if (this != &other)
+	{
+		xp_ = other.xp_;
+	}
 	return (*this);
 }
 

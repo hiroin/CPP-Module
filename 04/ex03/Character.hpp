@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 10:20:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:59:55 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,23 @@ class AMateria;
 class Character : public ICharacter
 {
 public:
-	Character();
 	Character(std::string const & name);
 	virtual ~Character();
+	Character(const Character& other);
+	Character&	operator=(const Character& other);
+
+public:
 	virtual std::string const & getName() const;
 	virtual void equip(AMateria* m);
 	virtual void unequip(int idx);
 	virtual void use(int idx, ICharacter& target);
 	virtual AMateria* getMateria(int idx) const;
-	Character(const Character& Character);
-	Character& 	operator = (const Character& Character);
+
 private:
-	const int	maxMaterias_ = 4;		
+	Character();
+
+private:
+	const int	maxMaterias_;
 	AMateria** 	materias_;
 	std::string	name_;
 };

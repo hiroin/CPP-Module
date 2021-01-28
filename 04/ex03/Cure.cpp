@@ -6,30 +6,22 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 06:55:01 by user42            #+#    #+#             */
-/*   Updated: 2020/12/26 14:16:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/27 13:54:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
-#include "Character.hpp"
-#include <string>
-#include <iostream>
+#include "ICharacter.hpp"
 
-// void Cure::use(ICharacter& target)
-// {
-// 	(void)target;
-// 	xp_ += 10;
-// 	std::cout << "* shoots an Cure bolt at " << target.getName() << " *" << std::endl;
-// }
-
-void Cure::outputMessage(ICharacter& target) const
+void Cure::use(ICharacter& target)
 {
+	AMateria::use(target);
 	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }
 
 AMateria* Cure::clone() const
 {
-	AMateria *cure = new Cure(type_);
+	Cure *cure = new Cure();
 	*cure = *this;
 	return cure;
 }
@@ -39,26 +31,24 @@ Cure::Cure() : AMateria("cure")
 	std::cout << "Cure Default constructor called" << std::endl;
 }
 
-Cure::Cure(std::string const & type) : AMateria(type)
-{
-	std::cout << "Cure set type constructor called" << std::endl;
-}
-
 Cure::~Cure()
 {
 	std::cout << "Cure Destructor called" << std::endl;
 }
 
-Cure::Cure(const Cure& cure)
+Cure::Cure(const Cure& other) : AMateria("cure")
 {
-	(void)cure;
 	std::cout << "Cure Copy constructor called" << std::endl;
+	*this = other;
 }
 
-Cure& 	Cure::operator = (const Cure& fixed)
+Cure& 	Cure::operator=(const Cure& other)
 {
-	(void)fixed;
 	std::cout << "Cure Assignation operator called" << std::endl;
+	if (this != &other)
+	{
+		AMateria::operator=(other);
+	}
 	return (*this);
 }
 
