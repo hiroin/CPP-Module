@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/15 06:26:22 by user42            #+#    #+#             */
-/*   Updated: 2021/01/31 08:59:35 by user42           ###   ########.fr       */
+/*   Updated: 2020/12/27 14:22:46 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <iostream>
 # include <string>
-
-class Form;
 
 class Bureaucrat
 {
@@ -27,7 +25,6 @@ public:
 	void		decrementGrade();
 	std::runtime_error	GradeTooHighException();
 	std::runtime_error	GradeTooLowException();
-	void		signForm(Form& form);
 	Bureaucrat(std::string name, int grade);
 	virtual ~Bureaucrat();
 	Bureaucrat(const Bureaucrat& bureaucrat);

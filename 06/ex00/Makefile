@@ -6,11 +6,11 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/20 19:50:14 by hkamiya           #+#    #+#              #
-#    Updated: 2021/01/05 10:26:36 by user42           ###   ########.fr        #
+#    Updated: 2021/02/03 03:25:27 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= main.cpp
+SRCS	= main.cpp Cast.cpp
 OBJS	= $(SRCS:.cpp=.o)
 CXX		= clang++
 RM		= rm -f
